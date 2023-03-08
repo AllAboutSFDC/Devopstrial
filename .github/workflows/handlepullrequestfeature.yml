@@ -26,9 +26,9 @@ jobs:
                   ~/pmd/bin/run.sh pmd --version
             # Run PMD scan
             - name: 'Run PMD scan'
-              run: ~/pmd/bin/run.sh pmd -d force-app -R pmd/ruleset.xml -f sarif -r ./pmd-output.sarif
+              run: ~/pmd/bin/run.sh pmd -d force-app -R pmd/ruleset.xml -f sarif 
             - name: Upload results to GitHub
-              uses: github/codeql-action/upload-sarif@v1
+            - uses: actions/upload-artifact@v3
               with:
-                sarif_file: pmd-output.sarif
+                path: /world.txt
                   
