@@ -26,10 +26,9 @@ jobs:
                   ~/pmd/bin/run.sh pmd --version
             # Run PMD scan
             - name: 'Run PMD scan'
-              run: ~/pmd/bin/run.sh pmd -d force-app -R pmd/ruleset.xml -f xml -r pmd/pmd-report.xml
-            - name: Save PMD report
-              uses: actions/upload-artifact@v3
+              run: ~/pmd/bin/run.sh pmd -d force-app -R pmd/ruleset.xml -f sarif -r ./pmd-output.sarif
+            - name: Upload results to GitHub
+              uses: github/codeql-action/upload-sarif@v1
               with:
-                  name: pmd-report
-                  path: pmd/pmd-report.xml
+                sarif_file: pmd-output.sarif
                   
